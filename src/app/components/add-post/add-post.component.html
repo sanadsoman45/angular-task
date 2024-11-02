@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Create a New Post</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            formControlName="title"
+            class="form-control"
+            id="title"
+            placeholder="Enter title"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Image</label>
+          <input
+            type="file"
+            class="form-control"
+            id="image"
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            required
+          />
+          <p style="color:red" *ngIf="errorMessage !== ''">{{errorMessage}}</p>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            formControlName="description"
+            rows="3"
+            placeholder="Enter description"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!postForm.valid || !selectedFile">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

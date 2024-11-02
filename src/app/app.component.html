@@ -1,0 +1,8 @@
+<!-- Loading Spinner -->
+<div *ngIf="loading$ | async" class="text-center my-5">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

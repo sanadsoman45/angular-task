@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <div class="d-flex align-items-center">
+        <form class="d-flex">
+          <div class="input-group">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              style="width: 150px"
+              (input)="onPostChange($event)"
+            />
+          </div>
+        </form>
+      </div>
+      <div>
+        <button [routerLink]="'/addpost'" class="btn btn-primary">
+          Add Post
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5 pt-5">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let post of posts">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.description }}</p>
+
+          <img
+            [src]="'http://localhost:3000/api/uploads/images/' + post.imageName"
+            class="card-img-bottom"
+            alt="Post Image"
+          />
+
+          <!-- Votes Container -->
+          <div class="d-flex align-items-center justify-content-center my-3">
+            <button class="btn btn-outline-success me-2" (click)="upvote(post)">
+              <i class="material-icons">thumb_up</i>
+            </button>
+            <div class="vote-count">
+              {{ post.score }}
+            </div>
+            <button
+              class="btn btn-outline-danger ms-2"
+              (click)="downvote(post)"
+            >
+              <i class="material-icons">thumb_down</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
